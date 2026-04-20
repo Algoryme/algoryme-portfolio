@@ -1,0 +1,264 @@
+/* Contact Section Styles */
+.contactSection {
+    padding: 5rem 1rem;
+    background-color: white;
+}
+
+html.dark .contactSection {
+    background-color: var(--bg-primary);
+}
+
+@media (min-width: 640px) {
+    .contactSection {
+        padding: 5rem 1.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .contactSection {
+        padding: 8rem 2rem;
+    }
+}
+
+.contactContainer {
+    max-width: 56rem;
+    margin: 0 auto;
+}
+
+.contactHeader {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.contactTitle {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+html.dark .contactTitle {
+    color: white;
+}
+
+@media (min-width: 768px) {
+    .contactTitle {
+        font-size: 3rem;
+    }
+}
+
+.contactSubtitle {
+    color: var(--text-secondary);
+    font-size: 1.125rem;
+    max-width: 42rem;
+    margin: 0 auto;
+}
+
+html.dark .contactSubtitle {
+    color: var(--neutral-400);
+}
+
+.contactFormBox {
+    background: linear-gradient(to bottom right, var(--cyan-50), #bfdbfe);
+    border-radius: 1rem;
+    padding: 2rem;
+    border: 1px solid var(--cyan-200);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 3rem;
+}
+
+html.dark .contactFormBox {
+    background: linear-gradient(to bottom right, var(--neutral-800), #1f2937);
+    border-color: var(--neutral-700);
+}
+
+@media (min-width: 768px) {
+    .contactFormBox {
+        padding: 3rem;
+    }
+}
+
+.formGroup {
+    margin-bottom: 1.5rem;
+}
+
+.formLabel {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--neutral-700);
+    margin-bottom: 0.5rem;
+}
+
+html.dark .formLabel {
+    color: var(--neutral-300);
+}
+
+.formInput {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    background-color: white;
+    border: 1px solid var(--cyan-200);
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: all 0.3s;
+    box-sizing: border-box;
+}
+
+html.dark .formInput {
+    background-color: var(--neutral-700);
+    border-color: var(--neutral-600);
+    color: white;
+}
+
+.formInput::placeholder {
+    color: var(--text-light);
+}
+
+html.dark .formInput::placeholder {
+    color: var(--neutral-500);
+}
+
+.formInput:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--cyan-500);
+}
+
+html.dark .formInput:focus {
+    box-shadow: 0 0 0 2px var(--cyan-500);
+}
+
+.formTextarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    background-color: white;
+    border: 1px solid var(--cyan-200);
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: all 0.3s;
+    box-sizing: border-box;
+    font-family: inherit;
+    resize: none;
+}
+
+html.dark .formTextarea {
+    background-color: var(--neutral-700);
+    border-color: var(--neutral-600);
+    color: white;
+}
+
+.formTextarea::placeholder {
+    color: var(--text-light);
+}
+
+html.dark .formTextarea::placeholder {
+    color: var(--neutral-500);
+}
+
+.formTextarea:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--cyan-500);
+}
+
+.submitButton {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(to right, var(--cyan-500), var(--blue-600));
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.submitButton:hover {
+    background: linear-gradient(to right, var(--cyan-600), var(--blue-700));
+    box-shadow: 0 20px 25px -5px rgba(6, 182, 212, 0.5);
+    transform: scale(1.05);
+}
+
+.submitButton:active {
+    transform: scale(0.95);
+}
+
+.successMessage {
+    text-align: center;
+    color: #10b981;
+    font-weight: 600;
+}
+
+html.dark .successMessage {
+    color: #34d399;
+}
+
+.contactInfoGrid {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .contactInfoGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.contactInfoCard {
+    text-align: center;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    background-color: var(--cyan-50);
+    border: 1px solid var(--cyan-200);
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+html.dark .contactInfoCard {
+    background-color: var(--neutral-800);
+    border-color: var(--neutral-700);
+}
+
+.contactInfoCard:hover {
+    border-color: var(--cyan-300);
+    transform: translateY(-1.25rem);
+}
+
+html.dark .contactInfoCard:hover {
+    border-color: var(--cyan-600);
+}
+
+.contactInfoIcon {
+    font-size: 2.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.contactInfoLabel {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
+}
+
+html.dark .contactInfoLabel {
+    color: var(--neutral-400);
+}
+
+.contactInfoValue {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+html.dark .contactInfoValue {
+    color: white;
+}
+
+.formButtonGroup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}

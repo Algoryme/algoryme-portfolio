@@ -1,8 +1,10 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { projectsData } from '@/data/projects';
+import '../styles/projects.css';
 
 export default function Projects() {
     const containerVariants = {
@@ -26,23 +28,18 @@ export default function Projects() {
     };
 
     return (
-        <section
-            id="projects"
-            className="py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-linear-to-b from-white to-cyan-50 dark:from-neutral-900 dark:to-neutral-950"
-        >
-            <div className="max-w-7xl mx-auto">
+        <section id="projects" className="projectsSection">
+            <div className="projectsContainer">
                 {/* Section Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                     viewport={{ once: true }}
-                    className="text-center mb-16"
+                    className="projectsHeader"
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold mb-4 text-neutral-900 dark:text-white">
-                        Featured Projects
-                    </h2>
-                    <p className="text-neutral-600 dark:text-neutral-400 text-lg max-w-2xl mx-auto">
+                    <h2 className="projectsTitle">Featured Projects</h2>
+                    <p className="projectsDescription">
                         Explore our latest work showcasing innovation and excellence
                     </p>
                 </motion.div>
@@ -53,41 +50,41 @@ export default function Projects() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: '-100px' }}
-                    className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12"
+                    className="projectsGrid"
                 >
                     {projectsData.map((project) => (
                         <motion.div
                             key={project.id}
                             variants={itemVariants}
                             whileHover={{ y: -10 }}
-                            className="group relative rounded-xl overflow-hidden bg-white dark:bg-neutral-800 border border-cyan-100 dark:border-neutral-700 hover:border-cyan-300 dark:hover:border-cyan-600 shadow-md hover:shadow-2xl transition-all duration-300"
+                            className="projectCard"
                         >
                             {/* Image Container */}
-                            <div className="relative h-48 md:h-56 overflow-hidden bg-neutral-200 dark:bg-neutral-700">
-                                <img
+                            <div className="projectImageContainer">
+                                <Image
                                     src={project.image}
                                     alt={project.name}
-                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                    fill
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                    className="projectImage"
+                                    priority={false}
                                 />
-                                <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                <div className="projectImageOverlay"></div>
                             </div>
 
                             {/* Content */}
-                            <div className="p-6">
-                                <h3 className="text-xl font-bold text-neutral-900 dark:text-white mb-2 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
+                            <div className="projectContent">
+                                <h3 className="projectTitle">
                                     {project.name}
                                 </h3>
-                                <p className="text-neutral-600 dark:text-neutral-400 text-sm mb-4 line-clamp-2">
+                                <p className="projectDescription">
                                     {project.description}
                                 </p>
 
                                 {/* Tags */}
-                                <div className="flex flex-wrap gap-2 mb-4">
+                                <div className="projectTags">
                                     {project.tags.slice(0, 2).map((tag) => (
-                                        <span
-                                            key={tag}
-                                            className="text-xs px-3 py-1 rounded-full bg-cyan-100 dark:bg-cyan-900 text-cyan-700 dark:text-cyan-300 font-medium"
-                                        >
+                                        <span key={tag} className="projectTag">
                                             {tag}
                                         </span>
                                     ))}
@@ -97,15 +94,15 @@ export default function Projects() {
                                 <motion.a
                                     href={project.link}
                                     whileHover={{ x: 5 }}
-                                    className="inline-flex items-center gap-2 text-cyan-600 dark:text-cyan-400 font-semibold hover:text-cyan-700 dark:hover:text-cyan-300 transition-colors group"
+                                    className="projectLink"
                                 >
                                     Live Link
-                                    <span className="group-hover:translate-x-1 transition-transform">→</span>
+                                    <span>→</span>
                                 </motion.a>
                             </div>
 
                             {/* Glow Effect */}
-                            <div className="absolute inset-0 bg-linear-to-br from-cyan-400/0 via-transparent to-blue-400/0 group-hover:from-cyan-400/10 group-hover:to-blue-400/10 pointer-events-none transition-colors duration-300"></div>
+                            <div className="projectGlow"></div>
                         </motion.div>
                     ))}
                 </motion.div>
@@ -116,12 +113,12 @@ export default function Projects() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                     viewport={{ once: true }}
-                    className="flex justify-center"
+                    className="projectsButtonContainer"
                 >
                     <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="px-10 py-4 rounded-lg font-semibold text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-cyan-500/50"
+                        className="projectsViewAllButton"
                     >
                         View All Projects
                     </motion.button>

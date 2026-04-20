@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { companies } from '@/data/projects';
+import '../styles/carousel.css';
 
 export default function Carousel() {
     const [isPaused, setIsPaused] = useState(false);
@@ -35,20 +36,20 @@ export default function Carousel() {
     }, [isPaused]);
 
     return (
-        <section className="py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-white dark:bg-neutral-900">
-            <div className="max-w-7xl mx-auto">
+        <section className="carouselSection">
+            <div className="carouselContainer">
                 {/* Section Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                     viewport={{ once: true }}
-                    className="text-center mb-16"
+                    className="carouselHeader"
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold mb-4 text-neutral-900 dark:text-white">
+                    <h2 className="carouselTitle">
                         Trusted by Industry Leaders
                     </h2>
-                    <p className="text-neutral-600 dark:text-neutral-400 text-lg max-w-2xl mx-auto">
+                    <p className="carouselDescription">
                         We partner with innovative companies to build digital excellence
                     </p>
                 </motion.div>
@@ -61,23 +62,20 @@ export default function Carousel() {
                     viewport={{ once: true }}
                     onMouseEnter={() => setIsPaused(true)}
                     onMouseLeave={() => setIsPaused(false)}
-                    className="relative"
+                    className="carouselWrapper"
                 >
-                    <div
-                        ref={containerRef}
-                        className="flex gap-8 overflow-hidden scroll-smooth"
-                    >
+                    <div ref={containerRef} className="carouselTrack">
                         {duplicatedCompanies.map((company, index) => (
                             <motion.div
                                 key={index}
                                 whileHover={{ scale: 1.1, y: -5 }}
-                                className="flex-shrink-0 w-32 h-32 md:w-40 md:h-40 rounded-lg bg-gradient-to-br from-cyan-50 to-blue-50 dark:from-neutral-800 dark:to-neutral-700 border border-cyan-200 dark:border-neutral-600 flex items-center justify-center cursor-pointer group transition-all duration-300"
+                                className="carouselItem"
                             >
-                                <div className="text-center">
-                                    <div className="text-6xl mb-3 group-hover:scale-125 transition-transform">
+                                <div className="carouselItemContent">
+                                    <div className="carouselItemIcon">
                                         {company.logo}
                                     </div>
-                                    <p className="text-sm font-semibold text-neutral-700 dark:text-neutral-300 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
+                                    <p className="carouselItemName">
                                         {company.name}
                                     </p>
                                 </div>
@@ -86,8 +84,8 @@ export default function Carousel() {
                     </div>
 
                     {/* Gradient Overlays */}
-                    <div className="absolute left-0 top-0 bottom-0 w-20 bg-linear-to-r from-white dark:from-neutral-900 to-transparent pointer-events-none z-10"></div>
-                    <div className="absolute right-0 top-0 bottom-0 w-20 bg-linear-to-l from-white dark:from-neutral-900 to-transparent pointer-events-none z-10"></div>
+                    <div className="carouselLeftGradient"></div>
+                    <div className="carouselRightGradient"></div>
                 </motion.div>
 
                 {/* Pause Indicator */}
@@ -95,7 +93,7 @@ export default function Carousel() {
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        className="text-center mt-6 text-sm text-neutral-500 dark:text-neutral-400"
+                        className="carouselPauseIndicator"
                     >
                         ⏸ Paused
                     </motion.div>

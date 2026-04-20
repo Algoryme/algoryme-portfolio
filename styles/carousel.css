@@ -1,0 +1,174 @@
+/* Carousel Section Styles */
+.carouselSection {
+    padding: 5rem 1rem;
+    background-color: white;
+}
+
+html.dark .carouselSection {
+    background-color: var(--bg-primary);
+}
+
+@media (min-width: 640px) {
+    .carouselSection {
+        padding: 5rem 1.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .carouselSection {
+        padding: 8rem 2rem;
+    }
+}
+
+.carouselContainer {
+    max-width: 80rem;
+    margin: 0 auto;
+}
+
+.carouselHeader {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.carouselTitle {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+html.dark .carouselTitle {
+    color: white;
+}
+
+@media (min-width: 768px) {
+    .carouselTitle {
+        font-size: 3rem;
+    }
+}
+
+.carouselDescription {
+    color: var(--text-light);
+    font-size: 1.125rem;
+    max-width: 42rem;
+    margin: 0 auto;
+}
+
+html.dark .carouselDescription {
+    color: var(--neutral-400);
+}
+
+.carouselWrapper {
+    position: relative;
+}
+
+.carouselTrack {
+    display: flex;
+    gap: 2rem;
+    overflow: hidden;
+    scroll-behavior: smooth;
+}
+
+.carouselItem {
+    flex-shrink: 0;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 0.5rem;
+    background: linear-gradient(to bottom right, var(--cyan-50), #dbeafe);
+    border: 1px solid var(--cyan-200);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+html.dark .carouselItem {
+    background: linear-gradient(to bottom right, var(--neutral-800), var(--neutral-700));
+    border-color: var(--neutral-600);
+}
+
+.carouselItem:hover {
+    transform: scale(1.1) translateY(-5px);
+}
+
+@media (min-width: 768px) {
+    .carouselItem {
+        width: 10rem;
+        height: 10rem;
+    }
+}
+
+.carouselItemContent {
+    text-align: center;
+}
+
+.carouselItemIcon {
+    font-size: 3.75rem;
+    margin-bottom: 0.75rem;
+    transition: transform 0.3s;
+}
+
+.carouselItem:hover .carouselItemIcon {
+    transform: scale(1.25);
+}
+
+.carouselItemName {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--neutral-700);
+    transition: color 0.3s;
+}
+
+html.dark .carouselItemName {
+    color: var(--neutral-300);
+}
+
+.carouselItem:hover .carouselItemName {
+    color: var(--cyan-600);
+}
+
+html.dark .carouselItem:hover .carouselItemName {
+    color: var(--cyan-400);
+}
+
+.carouselLeftGradient {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 5rem;
+    background: linear-gradient(to right, white, transparent);
+    pointer-events: none;
+    z-index: 10;
+}
+
+html.dark .carouselLeftGradient {
+    background: linear-gradient(to right, var(--bg-primary), transparent);
+}
+
+.carouselRightGradient {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 5rem;
+    background: linear-gradient(to left, white, transparent);
+    pointer-events: none;
+    z-index: 10;
+}
+
+html.dark .carouselRightGradient {
+    background: linear-gradient(to left, var(--bg-primary), transparent);
+}
+
+.carouselPauseIndicator {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.875rem;
+    color: var(--text-light);
+}
+
+html.dark .carouselPauseIndicator {
+    color: var(--neutral-400);
+}

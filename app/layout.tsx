@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/context/ThemeContext';
-import Navbar from '@/components/Navbar';
+import ClientNavbar from '@/components/ClientNavbar';
 import Footer from '@/components/Footer';
 
 const geistSans = Geist({
@@ -38,9 +38,33 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
+      <head>
+        <script
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  const savedTheme = localStorage.getItem('theme');
+                  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                  const isDark = savedTheme ? savedTheme === 'dark' : prefersDark;
+                  
+                  if (isDark) {
+                    document.documentElement.classList.add('dark');
+                    document.documentElement.style.colorScheme = 'dark';
+                  } else {
+                    document.documentElement.classList.remove('dark');
+                    document.documentElement.style.colorScheme = 'light';
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
+      </head>
       <body className="bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white transition-colors duration-300">
         <ThemeProvider>
-          <Navbar />
+          <ClientNavbar />
           <main>{children}</main>
           <Footer />
         </ThemeProvider>
