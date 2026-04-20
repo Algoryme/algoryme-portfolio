@@ -35,7 +35,7 @@ export default function Projects() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false, margin: '-50px' }}
                     className="projectsHeader"
                 >
                     <h2 className="projectsTitle">Featured Projects</h2>
@@ -49,7 +49,7 @@ export default function Projects() {
                     variants={containerVariants}
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: true, margin: '-100px' }}
+                    viewport={{ once: false, margin: '-100px' }}
                     className="projectsGrid"
                 >
                     {projectsData.slice(0, 4).map((project) => (
@@ -112,7 +112,7 @@ export default function Projects() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false }}
                     className="projectsButtonContainer"
                 >
                     <motion.button

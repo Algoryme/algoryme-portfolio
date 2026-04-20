@@ -38,7 +38,7 @@ export default function Footer() {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: false }}
                         className="footerBrand"
                     >
                         <Link
@@ -61,7 +61,7 @@ export default function Footer() {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.1 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: false }}
                         className="footerLinksSection"
                     >
                         <h3 className="footerSectionTitle">Navigation</h3>
@@ -84,7 +84,7 @@ export default function Footer() {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: false }}
                         className="footerLinksSection"
                     >
                         <h3 className="footerSectionTitle">Follow Us</h3>
@@ -112,7 +112,7 @@ export default function Footer() {
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.6 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false }}
                     className="footerBottom"
                 >
                     <p className="footerCopyright">

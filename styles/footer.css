@@ -78,6 +78,7 @@ html.dark .footer {
     font-weight: 600;
     color: white;
     margin-bottom: 1rem;
+    animation: glowingText 3s ease-in-out infinite;
 }
 
 .footerLinks {
@@ -96,10 +97,13 @@ html.dark .footer {
     padding: 0;
     transition: color 0.3s;
     text-decoration: none;
+    animation: glowingText 3s ease-in-out infinite;
+    font-weight: 600;
 }
 
 .footerLink:hover {
-    color: var(--cyan-400);
+    color: var(--cyan-300);
+    animation: glowingText 2s ease-in-out infinite;
 }
 
 .footerDivider {
@@ -140,10 +144,13 @@ html.dark .footer {
     color: #a1a1aa;
     text-decoration: none;
     transition: color 0.3s;
+    animation: glowingText 3s ease-in-out infinite;
+    font-weight: 600;
 }
 
 .footerPolicy:hover {
-    color: var(--cyan-400);
+    color: var(--cyan-300);
+    animation: glowingText 2s ease-in-out infinite;
 }
 
 .footerPolicyLink {
@@ -151,10 +158,13 @@ html.dark .footer {
     text-decoration: none;
     transition: color 0.3s;
     cursor: pointer;
+    animation: glowingText 3s ease-in-out infinite;
+    font-weight: 600;
 }
 
 .footerPolicyLink:hover {
-    color: var(--cyan-400);
+    color: var(--cyan-300);
+    animation: glowingText 2s ease-in-out infinite;
 }
 
 .footerGem {

@@ -16,7 +16,7 @@ export default function Carousel() {
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.8 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false }}
                     className="carouselWrapper"
                 >
                     <div className="carouselTrack">

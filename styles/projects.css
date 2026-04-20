@@ -35,10 +35,12 @@ html.dark .projectsSection {
     font-weight: 700;
     margin-bottom: 1rem;
     color: var(--text-primary);
+    animation: glowingText 3s ease-in-out infinite;
 }
 
 html.dark .projectsTitle {
     color: white;
+    animation: glowingTextDark 3s ease-in-out infinite;
 }
 
 @media (min-width: 768px) {
@@ -155,18 +157,32 @@ html.dark .projectImageContainer {
     margin-bottom: 0.75rem;
     transition: color 0.3s;
     line-height: 1.3;
+    animation: glowingText 3s ease-in-out infinite;
 }
 
 html.dark .projectTitle {
     color: white;
+    animation: glowingTextDark 3s ease-in-out infinite;
+}
+
+@media (min-width: 768px) {
+    .projectTitle {
+        animation: none;
+    }
+
+    html.dark .projectTitle {
+        animation: none;
+    }
 }
 
 .projectCard:hover .projectTitle {
     color: var(--cyan-600);
+    animation: glowingText 3s ease-in-out infinite;
 }
 
 html.dark .projectCard:hover .projectTitle {
     color: var(--cyan-400);
+    animation: glowingTextDark 3s ease-in-out infinite;
 }
 
 .projectDescription {
@@ -356,18 +372,32 @@ html.dark .projectImageContainer {
     margin-bottom: 0.75rem;
     transition: color 0.3s;
     line-height: 1.3;
+    animation: glowingText 3s ease-in-out infinite;
 }
 
 html.dark .projectTitle {
     color: white;
+    animation: glowingTextDark 3s ease-in-out infinite;
+}
+
+@media (min-width: 768px) {
+    .projectTitle {
+        animation: none;
+    }
+
+    html.dark .projectTitle {
+        animation: none;
+    }
 }
 
 .projectCard:hover .projectTitle {
     color: var(--cyan-600);
+    animation: glowingText 3s ease-in-out infinite;
 }
 
 html.dark .projectCard:hover .projectTitle {
     color: var(--cyan-400);
+    animation: glowingTextDark 3s ease-in-out infinite;
 }
 
 .projectDescription {

@@ -58,10 +58,12 @@ html.dark .navbar:not(.scrolled) {
     cursor: pointer;
     transition: opacity 0.3s;
     text-decoration: none;
+    animation: glowingText 3s ease-in-out infinite;
 }
 
 .logo:hover {
     opacity: 0.8;
+    animation: glowingText 2s ease-in-out infinite;
 }
 
 @media (min-width: 768px) {

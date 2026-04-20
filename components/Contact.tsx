@@ -57,7 +57,7 @@ export default function Contact() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false }}
                     className="contactHeader"
                 >
                     <h2 className="contactTitle">Let&apos;s Work Together</h2>
@@ -71,7 +71,7 @@ export default function Contact() {
                     variants={containerVariants}
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: true }}
+                    viewport={{ once: false }}
                     className="contactFormBox"
                 >
                     <form onSubmit={handleSubmit} className="contactForm">
@@ -145,7 +145,7 @@ export default function Contact() {
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.8, delay: 0.3 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false }}
                     className="contactInfoGrid"
                 >
                     {[
