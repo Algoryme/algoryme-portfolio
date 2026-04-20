@@ -52,7 +52,7 @@ export default function Projects() {
                     viewport={{ once: true, margin: '-100px' }}
                     className="projectsGrid"
                 >
-                    {projectsData.map((project) => (
+                    {projectsData.slice(0, 4).map((project) => (
                         <motion.div
                             key={project.id}
                             variants={itemVariants}

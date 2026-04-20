@@ -149,9 +149,9 @@ export default function Contact() {
                     className="contactInfoGrid"
                 >
                     {[
-                        { icon: '📧', label: 'Email', value: 'hello@algoryme.com' },
-                        { icon: '📱', label: 'Phone', value: '+1 (555) 123-4567' },
-                        { icon: '📍', label: 'Location', value: 'San Francisco, CA' },
+                        { icon: '📧', label: 'Email', value: 'hello@algoryme.com', href: 'mailto:hello@algoryme.com' },
+                        { icon: '📱', label: 'Phone', value: '01401020517, 01580306687', href: 'tel:01401020517' },
+                        { icon: '📍', label: 'Location', value: 'Mirpur-2, Dhaka-1216', href: 'https://maps.google.com/?q=Mirpur-2,Dhaka-1216' },
                     ].map((item, index) => (
                         <motion.div
                             key={index}
@@ -162,9 +162,14 @@ export default function Contact() {
                             <p className="contactInfoLabel">
                                 {item.label}
                             </p>
-                            <p className="contactInfoValue">
+                            <a
+                                href={item.href}
+                                target={item.label === 'Location' ? '_blank' : undefined}
+                                rel={item.label === 'Location' ? 'noopener noreferrer' : undefined}
+                                className="contactInfoValue"
+                            >
                                 {item.value}
-                            </p>
+                            </a>
                         </motion.div>
                     ))}
                 </motion.div>
