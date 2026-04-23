@@ -2,7 +2,8 @@
 
 import React, { JSX } from "react";
 import Link from "next/link";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
+
 
 type FooterLink = {
   label: string;
