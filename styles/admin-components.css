@@ -1,0 +1,246 @@
+/* Admin Components Styles */
+
+.adminFormOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.adminFormModal {
+  background: white;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.adminFormHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #e5e7eb;
+  background-color: #f9fafb;
+  position: sticky;
+  top: 0;
+}
+
+.adminFormHeader h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+.adminFormCloseButton {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.adminFormCloseButton:hover {
+  background-color: #e5e7eb;
+  color: #1f2937;
+}
+
+.adminForm {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.adminFormGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.adminFormGroup label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1f2937;
+}
+
+.adminFormGroup input,
+.adminFormGroup textarea,
+.adminFormGroup select {
+  padding: 10px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+.adminFormGroup input:focus,
+.adminFormGroup textarea:focus,
+.adminFormGroup select:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.adminFormRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.adminTechInput {
+  display: flex;
+  gap: 8px;
+}
+
+.adminTechInput input {
+  flex: 1;
+}
+
+.adminAddTechButton {
+  padding: 10px 16px;
+  background-color: #e0e7ff;
+  color: #4f46e5;
+  border: 1px solid #c7d2fe;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.adminAddTechButton:hover {
+  background-color: #c7d2fe;
+}
+
+.adminTechTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.adminTechTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background-color: #dbeafe;
+  color: #1e40af;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.adminTechTag button {
+  background: none;
+  border: none;
+  color: #1e40af;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.adminTechTag button:hover {
+  opacity: 0.7;
+}
+
+.adminImagePreview {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 8px;
+  word-break: break-all;
+}
+
+.adminError {
+  background-color: #fee2e2;
+  color: #dc2626;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  border-left: 4px solid #dc2626;
+}
+
+.adminFormActions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  padding-top: 10px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.adminCancelButton,
+.adminSubmitButton {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.adminCancelButton {
+  background-color: #e5e7eb;
+  color: #374151;
+}
+
+.adminCancelButton:hover {
+  background-color: #d1d5db;
+}
+
+.adminSubmitButton {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+}
+
+.adminSubmitButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.3);
+}
+
+.adminSubmitButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+@media (max-width: 768px) {
+  .adminFormRow {
+    grid-template-columns: 1fr;
+  }
+
+  .adminFormModal {
+    max-width: 100%;
+  }
+
+  .adminFormActions {
+    flex-direction: column-reverse;
+  }
+
+  .adminCancelButton,
+  .adminSubmitButton {
+    width: 100%;
+  }
+}

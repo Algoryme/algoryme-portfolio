@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { supabase } from '@/lib/supabase';
 import '../styles/contact.css';
 
 export default function Contact() {
@@ -11,21 +12,55 @@ export default function Contact() {
         message: '',
     });
     const [submitted, setSubmitted] = useState(false);
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const handleChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
     ) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
+        setError('');
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setError('');
+        setLoading(true);
+
         // Simple validation
-        if (formData.name && formData.email && formData.message) {
+        if (!formData.name || !formData.email || !formData.message) {
+            setError('Please fill in all fields');
+            setLoading(false);
+            return;
+        }
+
+        try {
+            // Save to Supabase
+            const { error: supabaseError } = await supabase
+                .from('contact_messages')
+                .insert([
+                    {
+                        name: formData.name,
+                        email: formData.email,
+                        message: formData.message,
+                        is_read: false,
+                    },
+                ]);
+
+            if (supabaseError) {
+                throw supabaseError;
+            }
+
             setSubmitted(true);
             setFormData({ name: '', email: '', message: '' });
             setTimeout(() => setSubmitted(false), 5000);
+        } catch (err) {
+            const errorMessage = err instanceof Error ? err.message : 'Failed to send message. Please try again.';
+            setError(errorMessage);
+            console.error('Error submitting message:', err);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -116,13 +151,16 @@ export default function Contact() {
 
                         {/* Submit Button */}
                         <motion.div variants={itemVariants} className="formButtonGroup">
+                            {error && <div className="errorMessage">{error}</div>}
+                            
                             <motion.button
                                 type="submit"
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 className="submitButton"
+                                disabled={loading}
                             >
-                                Send Message
+                                {loading ? 'Sending...' : 'Send Message'}
                             </motion.button>
 
                             {/* Success Message */}
