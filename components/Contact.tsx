@@ -152,7 +152,7 @@ export default function Contact() {
                         {/* Submit Button */}
                         <motion.div variants={itemVariants} className="formButtonGroup">
                             {error && <div className="errorMessage">{error}</div>}
-                            
+
                             <motion.button
                                 type="submit"
                                 whileHover={{ scale: 1.05 }}
