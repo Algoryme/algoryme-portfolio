@@ -28,6 +28,8 @@ export default function Contact() {
         setError('');
         setLoading(true);
 
+        console.log('Form submitted:', formData);
+
         // Simple validation
         if (!formData.name || !formData.email || !formData.message) {
             setError('Please fill in all fields');
@@ -36,8 +38,15 @@ export default function Contact() {
         }
 
         try {
+            console.log('Sending to Supabase:', {
+                name: formData.name,
+                email: formData.email,
+                message: formData.message,
+                is_read: false,
+            });
+
             // Save to Supabase
-            const { error: supabaseError } = await supabase
+            const { data, error: supabaseError } = await supabase
                 .from('contact_messages')
                 .insert([
                     {
@@ -48,10 +57,14 @@ export default function Contact() {
                     },
                 ]);
 
+            console.log('Supabase response - Data:', data, 'Error:', supabaseError);
+
             if (supabaseError) {
+                console.error('Supabase error details:', supabaseError);
                 throw supabaseError;
             }
 
+            console.log('Message saved successfully!');
             setSubmitted(true);
             setFormData({ name: '', email: '', message: '' });
             setTimeout(() => setSubmitted(false), 5000);

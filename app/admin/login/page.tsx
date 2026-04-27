@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { storeAdminEmail, isAdminEmail } from '@/lib/auth';
-import '../styles/admin.css';
+import '@/styles/admin.css';
 
 export default function AdminLogin() {
   const [email, setEmail] = useState('');

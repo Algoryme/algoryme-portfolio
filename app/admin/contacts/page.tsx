@@ -3,7 +3,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { supabase } from '@/lib/supabase';
 import { MessageList } from '@/components/admin';
-import '../../styles/admin-contacts.css';
+import '@/styles/admin-contacts.css';
 
 interface ContactMessage {
   id: string;
@@ -51,15 +51,53 @@ export default function AdminContacts() {
 
   const handleToggleRead = async (id: string, currentStatus: boolean) => {
     try {
-      const { error } = await supabase
+      console.log('Toggling read status for message:', id, 'Current status:', currentStatus);
+
+      const { data, error } = await supabase
         .from('contact_messages')
         .update({ is_read: !currentStatus })
         .eq('id', id);
 
-      if (error) throw error;
-      fetchMessages();
+      console.log('Update response - Data:', data, 'Error:', error);
+
+      if (error) {
+        console.error('Supabase update error:', error);
+        alert('Failed to update message: ' + error.message);
+        return;
+      }
+
+      console.log('Message status updated successfully, refetching...');
+
+      // Refetch all messages with current filter
+      setLoading(true);
+      const { data: refreshedData, error: refreshError } = await supabase
+        .from('contact_messages')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (refreshError) {
+        console.error('Refresh error:', refreshError);
+        setLoading(false);
+        return;
+      }
+
+      console.log('Refreshed data:', refreshedData);
+
+      // Filter the data based on current filter
+      let filteredData = refreshedData || [];
+      if (filter === 'unread') {
+        filteredData = filteredData.filter(msg => !msg.is_read);
+      } else if (filter === 'read') {
+        filteredData = filteredData.filter(msg => msg.is_read);
+      }
+
+      console.log('Filtered data after update:', filteredData);
+      setMessages(filteredData);
+      setLoading(false);
     } catch (error) {
       console.error('Error updating message:', error);
+      alert('Failed to update message status.');
+      setLoading(false);
     }
   };
 

@@ -3,7 +3,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { supabase } from '@/lib/supabase';
 import { ProjectForm, ProjectList } from '@/components/admin';
-import '../../styles/admin-projects.css';
+import '@/styles/admin-projects.css';
 
 interface Project {
   id: string;

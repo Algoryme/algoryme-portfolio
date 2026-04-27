@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { supabase } from "@/lib/supabase";
 import {
   IconMail,
   IconPhone,
@@ -73,6 +74,8 @@ export default function Contact() {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -84,15 +87,59 @@ export default function Contact() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted:", formData);
-    setSubmitted(true);
-    setTimeout(() => {
+    setError("");
+    setLoading(true);
+
+    // Validation
+    if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+      setError("Please fill in all fields");
+      setLoading(false);
+      return;
+    }
+
+    try {
+      console.log("Form submitted:", formData);
+      console.log("Sending to Supabase:", {
+        name: formData.name,
+        email: formData.email,
+        message: `Subject: ${formData.subject}\n\n${formData.message}`,
+        is_read: false,
+      });
+
+      // Save to Supabase
+      const { data, error: supabaseError } = await supabase
+        .from("contact_messages")
+        .insert([
+          {
+            name: formData.name,
+            email: formData.email,
+            message: `Subject: ${formData.subject}\n\n${formData.message}`,
+            is_read: false,
+          },
+        ]);
+
+      console.log("Supabase response - Data:", data, "Error:", supabaseError);
+
+      if (supabaseError) {
+        console.error("Supabase error details:", supabaseError);
+        throw supabaseError;
+      }
+
+      console.log("Message saved successfully!");
+      setSubmitted(true);
       setFormData({ name: "", email: "", subject: "", message: "" });
-      setSubmitted(false);
-    }, 3000);
+      setTimeout(() => {
+        setSubmitted(false);
+      }, 3000);
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : "Failed to send message. Please try again.";
+      setError(errorMessage);
+      console.error("Error submitting message:", err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -116,13 +163,13 @@ export default function Contact() {
             Get In Touch
           </p>
           <h2 className="mb-4 text-4xl md:text-5xl font-bold text-white">
-            Let's Work
-            <span className="ml-2 bg-gradient-to-r from-gray-300 via-white to-gray-300 bg-clip-text text-transparent">
+            Let&apos;s Work
+            <span className="ml-2 bg-linear-to-r from-gray-300 via-white to-gray-300 bg-clip-text text-transparent">
               Together
             </span>
           </h2>
           <p className="mx-auto max-w-2xl text-gray-400 text-lg">
-            Have a project in mind or want to discuss a collaboration? We'd love to hear from you.
+            Have a project in mind or want to discuss a collaboration? We&apos;d love to hear from you.
           </p>
         </motion.div>
 
@@ -146,7 +193,7 @@ export default function Contact() {
                 viewport={{ once: true }}
               >
                 <Link href={info.link || "#"}>
-                  <div className="group rounded-xl border border-gray-800 bg-gradient-to-br from-gray-900 to-gray-950 p-6 transition-all duration-300 hover:border-gray-700 hover:shadow-lg hover:shadow-gray-900/50 cursor-pointer">
+                  <div className="group rounded-xl border border-gray-800 bg-linear-to-br from-gray-900 to-gray-950 p-6 transition-all duration-300 hover:border-gray-700 hover:shadow-lg hover:shadow-gray-900/50 cursor-pointer">
                     <div className="mb-4 inline-flex items-center justify-center rounded-lg bg-gray-800 p-3 text-gray-300 group-hover:text-white transition-colors">
                       {info.icon}
                     </div>
@@ -195,7 +242,7 @@ export default function Contact() {
             viewport={{ once: true }}
             className="lg:col-span-2"
           >
-            <div className="rounded-2xl border border-gray-800 bg-gradient-to-br from-gray-900 to-gray-950 p-8">
+            <div className="rounded-2xl border border-gray-800 bg-linear-to-br from-gray-900 to-gray-950 p-8">
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Name Input */}
                 <motion.div
@@ -285,6 +332,17 @@ export default function Contact() {
                   />
                 </motion.div>
 
+                {/* Error Message */}
+                {error && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="rounded-lg border border-red-800 bg-red-950/30 p-4 text-center"
+                  >
+                    <p className="text-red-400">{error}</p>
+                  </motion.div>
+                )}
+
                 {/* Submit Button */}
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
@@ -296,12 +354,16 @@ export default function Contact() {
                     type="submit"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-gray-700 to-gray-600 px-6 py-3 font-semibold text-white transition-all duration-300 hover:shadow-lg hover:shadow-gray-700/50 disabled:opacity-50 disabled:cursor-not-allowed"
-                    disabled={submitted}
+                    className="w-full flex items-center justify-center gap-2 rounded-lg bg-linear-to-r from-gray-700 to-gray-600 px-6 py-3 font-semibold text-white transition-all duration-300 hover:shadow-lg hover:shadow-gray-700/50 disabled:opacity-50 disabled:cursor-not-allowed"
+                    disabled={loading || submitted}
                   >
                     {submitted ? (
                       <>
                         <span>✓ Message Sent</span>
+                      </>
+                    ) : loading ? (
+                      <>
+                        <span>Sending...</span>
                       </>
                     ) : (
                       <>
@@ -321,7 +383,7 @@ export default function Contact() {
                     className="rounded-lg border border-gray-800 bg-gray-900 p-4 text-center"
                   >
                     <p className="text-gray-300">
-                      Thank you for your message! We'll get back to you soon.
+                      Thank you for your message! We&apos;ll get back to you soon.
                     </p>
                   </motion.div>
                 )}
@@ -339,7 +401,7 @@ export default function Contact() {
           className="text-center"
         >
           <p className="mb-4 text-gray-400">
-            Prefer to schedule a call? We're flexible with our time.
+            Prefer to schedule a call? We&apos;re flexible with our time.
           </p>
           <Link href="#calendar">
             <motion.button
