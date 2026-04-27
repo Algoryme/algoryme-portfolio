@@ -5,7 +5,6 @@ import Projects from "@/components/Projects/Projects";
 import Pricing from "@/components/Pricing/Pricing";
 import Contact from "@/components/Contact/Contact";
 import Footer from "@/components/Footer/Footer";
-import Image from "next/image";
 export default function Home() {
   return (
     <>

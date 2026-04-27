@@ -1,0 +1,182 @@
+/* Admin Projects Styles */
+
+.adminProjects {
+  max-width: 1200px;
+}
+
+.adminProjectsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 30px;
+  gap: 20px;
+}
+
+.adminProjectsHeader h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0;
+}
+
+.adminProjectsHeader p {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 5px 0 0 0;
+}
+
+.adminAddButton {
+  padding: 12px 20px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.adminAddButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.3);
+}
+
+.adminProjectsTable {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.adminProjectsTable table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.adminProjectsTable thead {
+  background-color: #f3f4f6;
+}
+
+.adminProjectsTable th {
+  padding: 15px;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #374151;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.adminProjectsTable td {
+  padding: 15px;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 14px;
+}
+
+.adminProjectsTable tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+.adminTableSmall {
+  font-size: 12px;
+  color: #6b7280;
+  margin: 5px 0 0 0;
+}
+
+.adminTechList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.adminTechBadge {
+  display: inline-block;
+  padding: 4px 8px;
+  background-color: #e0e7ff;
+  color: #4f46e5;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.adminStatusBadge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.adminStatusBadge.active {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.adminStatusBadge.archived {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.adminTableActions {
+  display: flex;
+  gap: 8px;
+}
+
+.adminActionButton {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.adminActionButton.edit {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.adminActionButton.edit:hover {
+  background-color: #bfdbfe;
+}
+
+.adminActionButton.delete {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.adminActionButton.delete:hover {
+  background-color: #fecaca;
+}
+
+.adminEmpty {
+  background: white;
+  border-radius: 8px;
+  padding: 40px;
+  text-align: center;
+  color: #6b7280;
+  font-size: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .adminProjectsHeader {
+    flex-direction: column;
+  }
+
+  .adminAddButton {
+    width: 100%;
+  }
+
+  .adminProjectsTable {
+    overflow-x: auto;
+  }
+
+  .adminTableActions {
+    flex-direction: column;
+  }
+}

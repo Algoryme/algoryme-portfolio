@@ -1,0 +1,238 @@
+/* Admin Layout Styles */
+
+.adminLayout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  position: relative;
+}
+
+.adminHamburger {
+  display: none;
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 5px;
+}
+
+.adminHamburger span {
+  width: 25px;
+  height: 3px;
+  background-color: #1f2937;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.adminSidebarOverlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+}
+
+.adminSidebar {
+  width: 250px;
+  background-color: #1f2937;
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.adminSidebarHeader {
+  margin-bottom: 30px;
+  border-bottom: 1px solid #374151;
+  padding-bottom: 15px;
+}
+
+.adminLogo {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+  color: #10b981;
+}
+
+.adminLogoSubtitle {
+  font-size: 12px;
+  color: #9ca3af;
+  margin: 5px 0 0 0;
+}
+
+.adminNav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.adminNavItem {
+  display: block;
+  padding: 12px 15px;
+  color: #d1d5db;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.adminNavItem:hover {
+  background-color: #374151;
+  color: white;
+}
+
+.adminNavItem.active {
+  background-color: #10b981;
+  color: white;
+  font-weight: 600;
+}
+
+.adminSidebarFooter {
+  border-top: 1px solid #374151;
+  padding-top: 15px;
+}
+
+.adminUserEmail {
+  font-size: 12px;
+  color: #9ca3af;
+  margin: 0 0 10px 0;
+  word-break: break-all;
+}
+
+.adminLogoutButton {
+  width: 100%;
+  padding: 10px;
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.adminLogoutButton:hover {
+  background-color: #dc2626;
+}
+
+.adminMain {
+  flex: 1;
+  overflow-y: auto;
+  padding: 30px;
+}
+
+.adminLoading {
+  text-align: center;
+  padding: 50px;
+  color: #6b7280;
+  font-size: 16px;
+}
+
+/* Tablet Responsive */
+@media (max-width: 1024px) {
+  .adminSidebar {
+    width: 200px;
+    padding: 15px;
+  }
+
+  .adminMain {
+    padding: 20px;
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .adminLayout {
+    flex-direction: column;
+  }
+
+  .adminHamburger {
+    display: flex;
+  }
+
+  .adminSidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 250px;
+    padding-top: 60px;
+    z-index: 999;
+    transform: translateX(-100%);
+  }
+
+  .adminSidebar.open {
+    transform: translateX(0);
+  }
+
+  .adminSidebarOverlay.adminSidebarOverlay {
+    display: block;
+  }
+
+  .adminSidebarHeader {
+    margin-bottom: 20px;
+  }
+
+  .adminNav {
+    gap: 8px;
+  }
+
+  .adminNavItem {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .adminMain {
+    padding: 15px;
+    margin-top: 0;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+  .adminHamburger {
+    top: 10px;
+    left: 10px;
+    width: 35px;
+    height: 35px;
+  }
+
+  .adminHamburger span {
+    width: 20px;
+    height: 2.5px;
+  }
+
+  .adminSidebar {
+    width: 200px;
+    padding-top: 50px;
+  }
+
+  .adminMain {
+    padding: 10px;
+  }
+
+  .adminLogo {
+    font-size: 18px;
+  }
+
+  .adminLogoSubtitle {
+    font-size: 10px;
+  }
+}

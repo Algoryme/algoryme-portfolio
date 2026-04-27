@@ -1,0 +1,242 @@
+/* Admin Contacts Styles */
+
+.adminContacts {
+  max-width: 1200px;
+}
+
+.adminContactsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 25px;
+  gap: 20px;
+}
+
+.adminContactsHeader h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0;
+}
+
+.adminContactsHeader p {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 5px 0 0 0;
+}
+
+.adminExportButton {
+  padding: 12px 20px;
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.adminExportButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.3);
+}
+
+.adminFilterButtons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.adminFilterButton {
+  padding: 10px 16px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #6b7280;
+}
+
+.adminFilterButton:hover {
+  border-color: #667eea;
+  color: #667eea;
+}
+
+.adminFilterButton.active {
+  background: #667eea;
+  color: white;
+  border-color: #667eea;
+}
+
+.adminMessagesList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.adminMessageCard {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border-left: 4px solid #f3f4f6;
+}
+
+.adminMessageCard.unread {
+  border-left-color: #667eea;
+  background: #f8f9ff;
+}
+
+.adminMessageCard.read {
+  border-left-color: #10b981;
+}
+
+.adminMessageCard:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.adminMessageHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  gap: 15px;
+}
+
+.adminMessageName {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+.adminMessageEmail {
+  font-size: 12px;
+  color: #6b7280;
+  margin: 5px 0 0 0;
+}
+
+.adminMessageTime {
+  font-size: 12px;
+  color: #9ca3af;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.adminMessageBody {
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.adminMessageSubject {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #d1d5db;
+}
+
+.adminMessageSubject strong {
+  color: #667eea;
+  margin-right: 8px;
+}
+
+.adminMessageText {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #374151;
+  margin: 0;
+  word-break: break-word;
+}
+
+.adminMessageFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.adminMessageBadge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.adminMessageBadge.unread {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.adminMessageBadge.read {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.adminMessageActions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.adminActionButton {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.adminActionButton:hover {
+  background-color: #bfdbfe;
+}
+
+.adminActionButton.delete {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.adminActionButton.delete:hover {
+  background-color: #fecaca;
+}
+
+@media (max-width: 768px) {
+  .adminContactsHeader {
+    flex-direction: column;
+  }
+
+  .adminExportButton {
+    width: 100%;
+  }
+
+  .adminMessageHeader {
+    flex-direction: column;
+  }
+
+  .adminMessageFooter {
+    justify-content: flex-start;
+  }
+
+  .adminFilterButtons {
+    justify-content: space-between;
+  }
+
+  .adminFilterButton {
+    flex: 1;
+    min-width: 100px;
+  }
+}
