@@ -73,7 +73,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <header className="bg-background">
+      <header className="fixed inset-x-0 top-0 z-50 bg-background">
         <div className="max-w-7xl mx-auto w-full px-4 py-4 sm:px-6">
           <nav
             className={cn(
