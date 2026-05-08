@@ -105,11 +105,10 @@ const PricingCard = ({
       className="h-full"
     >
       <div
-        className={`relative h-full overflow-hidden rounded-2xl border transition-all duration-300 ${
-          tier.popular
+        className={`relative h-full overflow-hidden rounded-2xl border transition-all duration-300 ${tier.popular
             ? "border-gray-600 bg-gradient-to-br from-gray-800 to-gray-900 shadow-2xl shadow-gray-900/50"
             : "border-gray-800 bg-gradient-to-br from-gray-900 to-gray-950 hover:border-gray-700 hover:shadow-xl hover:shadow-gray-900/50"
-        }`}
+          }`}
       >
         {/* Popular badge */}
         {tier.popular && (
@@ -148,11 +147,10 @@ const PricingCard = ({
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className={`w-full py-3 px-4 rounded-lg font-semibold text-white transition-all duration-300 flex items-center justify-center gap-2 mb-8 ${
-                tier.popular
+              className={`w-full py-3 px-4 rounded-lg font-semibold text-white transition-all duration-300 flex items-center justify-center gap-2 mb-8 ${tier.popular
                   ? "bg-gradient-to-r from-gray-700 to-gray-600 hover:shadow-lg hover:shadow-gray-700/50"
                   : "bg-gray-800 hover:bg-gray-700 border border-gray-700"
-              }`}
+                }`}
             >
               {tier.cta}
               <IconArrowUpRight size={18} />
@@ -178,11 +176,10 @@ const PricingCard = ({
                   className="flex items-start gap-3"
                 >
                   <div
-                    className={`mt-0.5 flex-shrink-0 ${
-                      feature.included
+                    className={`mt-0.5 flex-shrink-0 ${feature.included
                         ? "text-gray-300"
                         : "text-gray-600"
-                    }`}
+                      }`}
                   >
                     {feature.included ? (
                       <IconCheck size={20} />
@@ -191,11 +188,10 @@ const PricingCard = ({
                     )}
                   </div>
                   <span
-                    className={`text-sm ${
-                      feature.included
+                    className={`text-sm ${feature.included
                         ? "text-gray-300"
                         : "text-gray-600 line-through"
-                    }`}
+                      }`}
                   >
                     {feature.name}
                   </span>
@@ -214,7 +210,7 @@ const PricingCard = ({
 
 export default function Pricing() {
   return (
-    <section className="relative w-full bg-[#0b0b0c] py-20 text-white">
+    <section id="pricing" className="relative w-full bg-[#0b0b0c] py-20 text-white">
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/3 left-1/3 w-96 h-96 bg-gray-600/5 rounded-full blur-3xl" />
