@@ -10,6 +10,8 @@ export default function AdminDashboard() {
     activeProjects: 0,
     totalMessages: 0,
     unreadMessages: 0,
+    totalBookings: 0,
+    pendingBookings: 0,
   });
   const [loading, setLoading] = useState(true);
 
@@ -36,11 +38,20 @@ export default function AdminDashboard() {
           .select('*', { count: 'exact', head: true })
           .eq('is_read', false);
 
+        const bookingStatsResponse = await fetch('/api/admin/bookings?stats=true');
+        const bookingStats = await bookingStatsResponse.json();
+
+        if (!bookingStatsResponse.ok) {
+          throw new Error(bookingStats.error || 'Failed to fetch booking stats');
+        }
+
         setStats({
           totalProjects: totalProjects || 0,
           activeProjects: activeProjects || 0,
           totalMessages: totalMessages || 0,
           unreadMessages: unreadMessages || 0,
+          totalBookings: bookingStats.totalBookings || 0,
+          pendingBookings: bookingStats.pendingBookings || 0,
         });
       } catch (error) {
         console.error('Error fetching stats:', error);
@@ -87,11 +98,19 @@ export default function AdminDashboard() {
             </div>
           </div>
 
+          <div className="adminStatCard">
+            <div className="adminStatIcon">📅</div>
+            <div className="adminStatContent">
+              <h3>Total Bookings</h3>
+              <p className="adminStatValue">{stats.totalBookings}</p>
+            </div>
+          </div>
+
           <div className="adminStatCard adminStatCardHighlight">
             <div className="adminStatIcon">🔔</div>
             <div className="adminStatContent">
-              <h3>Unread Messages</h3>
-              <p className="adminStatValue">{stats.unreadMessages}</p>
+              <h3>Pending Bookings</h3>
+              <p className="adminStatValue">{stats.pendingBookings}</p>
             </div>
           </div>
         </div>
@@ -105,6 +124,9 @@ export default function AdminDashboard() {
           </a>
           <a href="/admin/contacts" className="adminQuickLink">
             View Messages →
+          </a>
+          <a href="/admin/bookings" className="adminQuickLink">
+            View Bookings →
           </a>
         </div>
       </div>

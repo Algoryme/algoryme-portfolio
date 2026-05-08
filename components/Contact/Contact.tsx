@@ -403,7 +403,7 @@ export default function Contact() {
           <p className="mb-4 text-gray-400">
             Prefer to schedule a call? We&apos;re flexible with our time.
           </p>
-          <Link href="#calendar">
+          <Link href="/schedule">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}

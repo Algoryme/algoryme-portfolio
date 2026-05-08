@@ -18,16 +18,16 @@ const navigationData: NavigationSection[] = [
     href: "/",
   },
   {
+    title: "Work",
+    href: "/projects",
+  },
+  {
     title: "About us",
     href: "/#about",
   },
   {
     title: "Services",
     href: "/#showcase",
-  },
-  {
-    title: "Work",
-    href: "/projects",
   },
   {
     title: "Team",
