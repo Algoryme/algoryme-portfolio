@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState, useCallback } from 'react';
-import { supabase } from '@/lib/supabase';
 import { ProjectForm, ProjectList } from '@/components/admin';
 import '@/styles/admin-projects.css';
 
@@ -26,15 +25,16 @@ export default function AdminProjects() {
   const fetchProjects = useCallback(async () => {
     try {
       setLoading(true);
-      const { data, error } = await supabase
-        .from('projects')
-        .select('*')
-        .order('created_at', { ascending: false });
+      const response = await fetch('/api/projects');
+      const data = await response.json();
 
-      if (error) throw error;
+      if (!response.ok) {
+        throw new Error(data?.error || 'Failed to load projects');
+      }
+
       setProjects(data || []);
     } catch (error) {
-      console.error('Error fetching projects:', error);
+      console.error('Error fetching projects:', error instanceof Error ? error.message : error);
     } finally {
       setLoading(false);
     }
@@ -65,15 +65,18 @@ export default function AdminProjects() {
     if (!confirm('Are you sure you want to delete this project?')) return;
 
     try {
-      const { error } = await supabase
-        .from('projects')
-        .delete()
-        .eq('id', id);
+      const response = await fetch(`/api/projects?id=${encodeURIComponent(id)}`, {
+        method: 'DELETE',
+      });
+      const result = await response.json();
 
-      if (error) throw error;
+      if (!response.ok) {
+        throw new Error(result?.error || 'Failed to delete project');
+      }
+
       fetchProjects();
     } catch (error) {
-      console.error('Error deleting project:', error);
+      console.error('Error deleting project:', error instanceof Error ? error.message : error);
       alert('Failed to delete project');
     }
   };

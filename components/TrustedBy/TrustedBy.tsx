@@ -51,7 +51,7 @@ export default function TrustedBy() {
         }
       `}</style>
       <div className="max-w-5xl mx-auto px-4 text-center">
-        
+
         {/* Heading */}
         <p className="text-xs uppercase tracking-widest text-gray-500 mb-8">
           Trusted by leading companies

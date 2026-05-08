@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { supabase } from '@/lib/supabase';
 import '../../styles/admin-components.css';
 
 interface Project {
@@ -85,22 +84,21 @@ export default function ProjectForm({ project, onClose, onSuccess }: ProjectForm
   };
 
   const uploadImage = async (file: File): Promise<string> => {
-    try {
-      const filename = `${Date.now()}-${file.name}`;
-      const { error } = await supabase.storage
-        .from('project-images')
-        .upload(filename, file);
+    const formData = new FormData();
+    formData.append('image', file);
 
-      if (error) throw error;
+    const response = await fetch('/api/upload-project-image', {
+      method: 'POST',
+      body: formData,
+    });
 
-      const { data: publicUrl } = supabase.storage
-        .from('project-images')
-        .getPublicUrl(filename);
+    const result = await response.json();
 
-      return publicUrl.publicUrl;
-    } catch {
-      throw new Error('Failed to upload image');
+    if (!response.ok) {
+      throw new Error(result?.error || 'Failed to upload image');
     }
+
+    return result.imagePath;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -121,20 +119,31 @@ export default function ProjectForm({ project, onClose, onSuccess }: ProjectForm
       };
 
       if (project?.id) {
-        // Update existing project
-        const { error } = await supabase
-          .from('projects')
-          .update(dataToSave)
-          .eq('id', project.id);
+        const response = await fetch(`/api/projects?id=${encodeURIComponent(project.id)}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(dataToSave),
+        });
+        const result = await response.json();
 
-        if (error) throw error;
+        if (!response.ok) {
+          throw new Error(result?.error || 'Failed to update project');
+        }
       } else {
-        // Create new project
-        const { error } = await supabase
-          .from('projects')
-          .insert([dataToSave]);
+        const response = await fetch('/api/projects', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(dataToSave),
+        });
+        const result = await response.json();
 
-        if (error) throw error;
+        if (!response.ok) {
+          throw new Error(result?.error || 'Failed to create project');
+        }
       }
 
       onSuccess();

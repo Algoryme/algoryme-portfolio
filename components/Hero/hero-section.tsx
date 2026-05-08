@@ -54,22 +54,22 @@ export const HeroSection = ({
   const scaleX = useTransform(
     scrollYProgress,
     [0, 0.3],
-    [1.55, isMobile ? 1 : 1.5],
+    [1.2, isMobile ? 1 : 1.5],
   );
   const scaleY = useTransform(
     scrollYProgress,
     [0, 0.3],
-    [0.2, isMobile ? 1 : 1.5],
+    [0.6, isMobile ? 1 : 1.5],
   );
-  const translate = useTransform(scrollYProgress, [0, 1], [-329, 1500]);
-  const rotate = useTransform(scrollYProgress, [0, 0.275], [-90, 0]);
+  const translate = useTransform(scrollYProgress, [0, 1], [-0, 1500]);
+  const rotate = useTransform(scrollYProgress, [0, 0.275], [-27, 0]);
   const textTransform = useTransform(scrollYProgress, [0, 0.3], [0, 100]);
   const textOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
 
   return (
-    <div style={{marginTop:"-400px"}}
+    <div style={{marginTop:"-280px"}}
       ref={ref}
-      className="relative z-[-10] flex min-h-[200vh] shrink-0 scale-[0.6] transform flex-col items-center justify-start py-0 [perspective:800px] sm:scale-50 md:scale-100 md:py-40"
+      className="relative z-[-10] flex min-h-[200vh] shrink-0 scale-[0.5] transform flex-col items-center justify-start py-0 [perspective:800px] sm:scale-50 md:scale-100 md:py-40"
     >
       <motion.h2
         style={{

@@ -1,5 +1,5 @@
 "use client";
-import Logo from "@/assets/logo/logo";
+import Link from "next/link";
 import { Button } from "@/components/Navbar/HomeNavbar/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/Navbar/HomeNavbar/dropdown-menu";
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from "@/components/Navbar/HomeNavbar/navigation-menu";
@@ -14,35 +14,39 @@ export type NavigationSection = {
 
 const navigationData: NavigationSection[] = [
   {
-    title: "About us",
-    href: "#",
-  },
-  {
-    title: "Services",
-    href: "#",
+    title: "Home",
+    href: "/",
   },
   {
     title: "Work",
-    href: "#",
+    href: "/projects",
+  },
+  {
+    title: "About us",
+    href: "/#about",
+  },
+  {
+    title: "Services",
+    href: "/#showcase",
   },
   {
     title: "Team",
-    href: "#",
+    href: "/",
   },
   {
     title: "Pricing",
-    href: "#",
+    href: "/#pricing",
   },
   {
     title: "Awards",
-    href: "#",
+    href: "/",
   },
 ];
 
 const CollaborateButton = ({ className }: { className?: string }) => (
   <Button className={cn("relative text-sm font-medium rounded-full h-10 p-1 ps-4 pe-12 group transition-all duration-500 hover:ps-12 hover:pe-4 w-fit overflow-hidden hover:bg-primary/80", className)}>
     <span className="relative z-10 transition-all duration-500 hover:cursor-pointer">
-      Let's Collaborate
+      {"Let's Collaborate"}
     </span>
     <div className="absolute right-1 w-8 h-8 bg-background text-foreground rounded-full flex items-center justify-center transition-all duration-500 group-hover:right-[calc(100%-36px)] group-hover:rotate-45">
       <ArrowUpRight size={16} />
@@ -73,7 +77,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <header className="bg-background">
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-white/10 backdrop-blur-3xl shadow-xl shadow-slate-950/20">
         <div className="max-w-7xl mx-auto w-full px-4 py-4 sm:px-6">
           <nav
             className={cn(
@@ -83,10 +87,12 @@ const Navbar = () => {
                 : "bg-transparent border-transparent"
             )}
           >
-            <a href="#">
-              {/* <Logo /> */}
-              <span className="text-xl font-bold">Algoryme</span>
-            </a>
+            <Link
+              href="/"
+              className="inline-flex items-center rounded-full bg-slate-950/90 px-4 py-2 text-sm font-semibold uppercase tracking-[0.18em] text-white shadow-[0_14px_50px_-30px_rgba(15,23,42,0.8)] ring-1 ring-white/10 backdrop-blur-xl transition hover:bg-slate-950"
+            >
+              Algoryme
+            </Link>
             <div>
               <NavigationMenu className="max-lg:hidden bg-[#0b0b0c] p-0.5 rounded-full">
                 <NavigationMenuList className="flex gap-0">
