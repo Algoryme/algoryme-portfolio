@@ -16,23 +16,24 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const isLoginPage = pathname === '/admin/login';
 
   useEffect(() => {
-    // If on login page, allow access regardless
-    if (isLoginPage) {
-      setLoading(false);
-      return;
-    }
+    const initialize = () => {
+      if (isLoginPage) {
+        window.setTimeout(() => setLoading(false), 0);
+        return;
+      }
 
-    const adminEmail = getStoredAdminEmail();
+      const adminEmail = getStoredAdminEmail();
 
-    // If not on login page and no admin email, redirect to login
-    if (!adminEmail) {
-      router.push('/admin/login');
-      return;
-    }
+      if (!adminEmail) {
+        router.push('/admin/login');
+        return;
+      }
 
-    // Admin email exists, set it and stop loading
-    setEmail(adminEmail);
-    setLoading(false);
+      setEmail(adminEmail);
+      window.setTimeout(() => setLoading(false), 0);
+    };
+
+    initialize();
   }, [router, isLoginPage]);
 
   if (isLoginPage) {
@@ -89,6 +90,13 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             onClick={() => setSidebarOpen(false)}
           >
             📧 Messages
+          </Link>
+          <Link
+            href="/admin/bookings"
+            className={`adminNavItem ${pathname === '/admin/bookings' ? 'active' : ''}`}
+            onClick={() => setSidebarOpen(false)}
+          >
+            📅 Bookings
           </Link>
         </nav>
 

@@ -1,0 +1,186 @@
+.adminBookings {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.adminBookingsHeader {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.adminBookingsHeader h1 {
+    margin: 0;
+    font-size: 32px;
+}
+
+.adminBookingsHeader p {
+    margin: 6px 0 0;
+    color: #6b7280;
+}
+
+.adminFilterButtons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.adminFilterButton {
+    padding: 10px 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 999px;
+    background: white;
+    color: #111827;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.adminFilterButton.active {
+    background: #111827;
+    color: white;
+    border-color: #111827;
+}
+
+.adminBookingsGrid {
+    display: grid;
+    gap: 20px;
+}
+
+.adminBookingCard {
+    border-radius: 24px;
+    border: 1px solid #e5e7eb;
+    background: white;
+    padding: 24px;
+    box-shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
+}
+
+.adminBookingMeta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.adminBookingMeta h2 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.adminBookingLabel {
+    margin: 0;
+    color: #6b7280;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+}
+
+.adminBookingStatus {
+    padding: 10px 16px;
+    border-radius: 999px;
+    text-transform: capitalize;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.adminBookingStatus.status-pending {
+    background: #fde68a;
+    color: #92400e;
+}
+
+.adminBookingStatus.status-confirmed {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.adminBookingStatus.status-completed {
+    background: #bfdbfe;
+    color: #1d4ed8;
+}
+
+.adminBookingStatus.status-cancelled {
+    background: #fecaca;
+    color: #991b1b;
+}
+
+.adminBookingDetails {
+    margin-top: 18px;
+    color: #374151;
+    display: grid;
+    gap: 10px;
+}
+
+.adminBookingDetails p {
+    margin: 0;
+}
+
+.adminBookingActions {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.adminStatusButton,
+.adminActionButton {
+    border: 1px solid #d1d5db;
+    padding: 10px 14px;
+    border-radius: 999px;
+    background: white;
+    color: #111827;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.adminStatusButton.active {
+    background: #111827;
+    color: white;
+    border-color: #111827;
+}
+
+.adminActionButton.delete {
+    background: #fee2e2;
+    border-color: #fecaca;
+    color: #b91c1c;
+}
+
+.adminActionButton.delete:hover {
+    background: #fca5a5;
+}
+
+.adminExportButton {
+    padding: 12px 18px;
+    background: #111827;
+    color: white;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+}
+
+.adminEmpty {
+    padding: 40px;
+    border-radius: 24px;
+    border: 1px dashed #d1d5db;
+    text-align: center;
+    color: #6b7280;
+}
+
+.adminLoading {
+    padding: 40px;
+    text-align: center;
+    color: #6b7280;
+}
+
+@media (max-width: 768px) {
+    .adminBookingMeta {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .adminBookingActions {
+        justify-content: flex-start;
+    }
+}

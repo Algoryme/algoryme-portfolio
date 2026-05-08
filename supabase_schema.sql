@@ -31,9 +31,27 @@ CREATE INDEX idx_projects_created_at ON projects(created_at DESC);
 CREATE INDEX idx_contact_messages_created_at ON contact_messages(created_at DESC);
 CREATE INDEX idx_contact_messages_is_read ON contact_messages(is_read);
 
+-- 3. CREATE BOOKINGS TABLE
+CREATE TABLE bookings (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  full_name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  company VARCHAR(255),
+  phone VARCHAR(50),
+  service_type VARCHAR(100) NOT NULL,
+  preferred_date TIMESTAMP WITH TIME ZONE,
+  notes TEXT,
+  status VARCHAR(50) DEFAULT 'pending' CHECK (status IN ('pending', 'confirmed', 'completed', 'cancelled')),
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX idx_bookings_created_at ON bookings(created_at DESC);
+CREATE INDEX idx_bookings_status ON bookings(status);
+
 -- 4. ENABLE ROW LEVEL SECURITY (RLS) - For security
 ALTER TABLE projects ENABLE ROW LEVEL SECURITY;
 ALTER TABLE contact_messages ENABLE ROW LEVEL SECURITY;
+ALTER TABLE bookings ENABLE ROW LEVEL SECURITY;
 
 -- 5. CREATE POLICIES (Optional - for now, admin has full access)
 -- You can customize these later based on your auth requirements
