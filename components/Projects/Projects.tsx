@@ -130,7 +130,7 @@ export default function Projects() {
   }, []);
 
   return (
-    <section className="relative w-full bg-[#0b0b0c] py-20 text-white">
+    <section id="showcase" className="relative w-full bg-[#0b0b0c] py-20 text-white">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gray-600/5 rounded-full blur-3xl" />
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gray-500/5 rounded-full blur-3xl" />

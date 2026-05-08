@@ -29,9 +29,9 @@ const companies: Company[] = [
 
 export default function TrustedBy() {
   return (
-    <section className="w-full py-12 bg-[#0b0b0c] text-white">
+    <section id="about" className="w-full py-12 bg-[#0b0b0c] text-white">
       <div className="max-w-5xl mx-auto px-4 text-center">
-        
+
         {/* Heading */}
         <p className="text-xs uppercase tracking-widest text-gray-500 mb-8">
           Trusted by leading companies
