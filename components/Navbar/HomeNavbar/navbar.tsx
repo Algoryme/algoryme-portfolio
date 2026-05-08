@@ -77,7 +77,7 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto w-full px-4 py-4 sm:px-6">
           <nav
             className={cn(
-              "w-full flex items-center h-fit justify-between gap-3.5 lg:gap-6 transition-all duration-500",
+              "w-full flex items-center h-fit justify-between gap-3.5 lg:gap-6",
               sticky
                 ? "p-2.5 bg-background/60 backdrop-blur-lg border border-border/40 shadow-2xl shadow-primary/5 rounded-full"
                 : "bg-transparent border-transparent"

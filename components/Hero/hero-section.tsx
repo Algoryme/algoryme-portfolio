@@ -54,34 +54,35 @@ export const HeroSection = ({
   const scaleX = useTransform(
     scrollYProgress,
     [0, 0.3],
-    [1.2, isMobile ? 1 : 1.5],
+    [1.55, isMobile ? 1 : 1.5],
   );
   const scaleY = useTransform(
     scrollYProgress,
     [0, 0.3],
-    [0.6, isMobile ? 1 : 1.5],
+    [0.2, isMobile ? 1 : 1.5],
   );
-  const translate = useTransform(scrollYProgress, [0, 1], [0, 1500]);
-  const rotate = useTransform(scrollYProgress, [0.1, 0.12, 0.3], [-28, -28, 0]);
+  const translate = useTransform(scrollYProgress, [0, 1], [-329, 1500]);
+  const rotate = useTransform(scrollYProgress, [0, 0.275], [-90, 0]);
   const textTransform = useTransform(scrollYProgress, [0, 0.3], [0, 100]);
   const textOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
 
   return (
-    <div
+    <div style={{marginTop:"-400px"}}
       ref={ref}
-      className="relative z-[-10] flex min-h-[200vh] shrink-0 scale-[0.35] transform flex-col items-center justify-start py-0 [perspective:800px] sm:scale-50 md:scale-100 md:py-40"
+      className="relative z-[-10] flex min-h-[200vh] shrink-0 scale-[0.6] transform flex-col items-center justify-start py-0 [perspective:800px] sm:scale-50 md:scale-100 md:py-40"
     >
       <motion.h2
         style={{
           translateY: textTransform,
           opacity: textOpacity,
         }}
-        className="mb-20 text-center text-7xl font-bold text-neutral-800 dark:text-white"
+        className="mb-20 text-center text-7xl font-bold text-neutral-800 dark:text-dark"
       >
         {title || (
           <span className="font-[family-name:var(--font-google-sans)] flex flex-col gap-4">
             <h1 className="text-7xl">Elevate Your Digital Presence</h1>
-            <p className="text-lg">We craft stunning, high-performance web experiences that captivate your audience and drive meaningful results.</p>
+            <p className="text-2xl mb-8 mt-4">We craft stunning, high-performance web experiences that captivate your audience and drive meaningful results.</p>
+          
           </span>
         )}
       </motion.h2>

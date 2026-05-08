@@ -29,7 +29,27 @@ const companies: Company[] = [
 
 export default function TrustedBy() {
   return (
-    <section className="w-full py-12 bg-[#0b0b0c] text-white">
+    <section className="w-full py-12 bg-[#0b0b0c] text-white -mt-150 md:mt-0">
+      <style>{`
+        @keyframes marquee {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(calc(-50% - 24px));
+          }
+        }
+        .marquee {
+          display: flex;
+          gap: 24px;
+          animation: marquee 20s linear infinite;
+          width: fit-content;
+        }
+        .marquee-container {
+          overflow: hidden;
+          width: 100%;
+        }
+      `}</style>
       <div className="max-w-5xl mx-auto px-4 text-center">
         
         {/* Heading */}
@@ -38,16 +58,18 @@ export default function TrustedBy() {
         </p>
 
         {/* Icons */}
-        <div className="flex flex-wrap justify-center items-center gap-20">
-          {companies.map((company) => (
-            <div
-              key={company.name}
-              className="opacity-70 hover:opacity-100 transition duration-300 text-gray-400 hover:text-white"
-              title={company.name}
-            >
-              {company.icon}
-            </div>
-          ))}
+        <div className="marquee-container">
+          <div className="marquee">
+            {[...companies, ...companies].map((company, index) => (
+              <div
+                key={`${company.name}-${index}`}
+                className="opacity-70 hover:opacity-100 transition duration-300 text-gray-400 hover:text-white flex-shrink-0"
+                title={company.name}
+              >
+                {company.icon}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
