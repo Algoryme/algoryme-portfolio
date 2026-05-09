@@ -75,7 +75,7 @@ export default function Footer(): JSX.Element {
                   <div className="w-8 h-8 rounded bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center text-white font-bold">
                     A
                   </div>
-                  <span className="text-lg font-semibold text-white">
+                  <span className="text-sm md:text-lg font-semibold text-white">
                     Algoryme
                   </span>
                 </div>
@@ -119,9 +119,9 @@ export default function Footer(): JSX.Element {
       </footer>
 
       {/* Background decoration section */}
-      <div className="w-full bg-[#0b0b0c] overflow-hidden py-0 md:py-1">
+      <div className="w-full bg-[#0b0b0c] overflow-hidden">
         <div className="flex items-center justify-center pointer-events-none">
-          <div className="text-[200px] font-black text-white opacity-5 whitespace-nowrap">
+          <div className="text-[48px] sm:text-[80px] md:text-[120px] lg:text-[160px] xl:text-[200px] font-black text-white opacity-5 whitespace-nowrap select-none">
             Algoryme
           </div>
         </div>

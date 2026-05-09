@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <HeroSection src="/image.png" />
+      <HeroSection />
       <TrustedBy />
       <Projects />
       <Pricing />

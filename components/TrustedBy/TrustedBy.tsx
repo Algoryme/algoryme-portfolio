@@ -29,7 +29,7 @@ const companies: Company[] = [
 
 export default function TrustedBy() {
   return (
-    <section className="w-full py-12 bg-[#0b0b0c] text-white -mt-150 md:mt-0">
+    <section className="w-full py-12 bg-[#0b0b0c] text-white  md:mt-0">
       <style>{`
         @keyframes marquee {
           0% {

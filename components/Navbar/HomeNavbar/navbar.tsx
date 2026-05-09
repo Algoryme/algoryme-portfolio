@@ -23,29 +23,23 @@ const navigationData: NavigationSection[] = [
   },
   {
     title: "About us",
-    href: "/#about",
+    href: "/about",
   },
   {
     title: "Services",
     href: "/#showcase",
   },
-  {
-    title: "Team",
-    href: "/",
-  },
+ 
   {
     title: "Pricing",
     href: "/#pricing",
   },
-  {
-    title: "Awards",
-    href: "/",
-  },
+
 ];
 
 const CollaborateButton = ({ className }: { className?: string }) => (
   <Button className={cn("relative text-sm font-medium rounded-full h-10 p-1 ps-4 pe-12 group transition-all duration-500 hover:ps-12 hover:pe-4 w-fit overflow-hidden hover:bg-primary/80", className)}>
-    <span className="relative z-10 transition-all duration-500 hover:cursor-pointer">
+    <span className="relative z-10 transition-all duration-500 hover:cursor-pointer group-active:!text-black">
       {"Let's Collaborate"}
     </span>
     <div className="absolute right-1 w-8 h-8 bg-background text-foreground rounded-full flex items-center justify-center transition-all duration-500 group-hover:right-[calc(100%-36px)] group-hover:rotate-45">
@@ -77,13 +71,13 @@ const Navbar = () => {
 
   return (
     <div>
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-white/10 backdrop-blur-3xl shadow-xl shadow-slate-950/20">
+      <header className="fixed inset-x-0 top-0 z-50">
         <div className="max-w-7xl mx-auto w-full px-4 py-4 sm:px-6">
           <nav
             className={cn(
               "w-full flex items-center h-fit justify-between gap-3.5 lg:gap-6",
               sticky
-                ? "p-2.5 bg-background/60 backdrop-blur-lg border border-border/40 shadow-2xl shadow-primary/5 rounded-full"
+                ? "bg-transparent border-transparent"
                 : "bg-transparent border-transparent"
             )}
           >
@@ -100,7 +94,7 @@ const Navbar = () => {
                     <NavigationMenuItem key={navItem.title}>
                       <NavigationMenuLink
                         href={navItem.href}
-                        className="px-2 lg:px-4 py-2 text-sm font-medium rounded-full text-gray-400 hover:text-white hover:bg-gray-900 outline outline-transparent hover:outline-gray-700 hover:shadow-xs transition tracking-normal"
+                        className="px-2 lg:px-4 py-2 text-sm font-medium rounded-full text-gray-400 hover:text-white hover:bg-gray-900 outline outline-transparent hover:outline-gray-700 hover:shadow-xs transition tracking-normal active:text-black"
                       >
                         {navItem.title}
                       </NavigationMenuLink>
@@ -124,7 +118,7 @@ const Navbar = () => {
                 >
                   {navigationData.map((item) => (
                     <DropdownMenuItem key={item.title}>
-                      <a href={item.href} className="w-full cursor-pointer text-sm font-medium">{item.title}</a>
+                      <a href={item.href} className="w-full cursor-pointer text-sm font-medium active:text-black">{item.title}</a>
                     </DropdownMenuItem>
                   ))}
                 </DropdownMenuContent>
