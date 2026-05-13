@@ -61,11 +61,9 @@ export const HeroSection = () => {
           <button className="bg-[#00aaff] hover:bg-[#2eb3f5]/90 text-gray-800 px-6 py-2.5 rounded-full text-sm transition cursor-pointer group">
              <div className="relative overflow-hidden">
               <span className="block transition-transform duration-200 group-hover:-translate-y-full">
-                Get Started today
+                <b>Explore</b> 
               </span>
-              <span className="absolute top-0 left-0 block transition-transform duration-200 group-hover:translate-y-0 translate-y-full">
-                Get Started today
-              </span>
+             
             </div>
           </button>
           <div className="bg-white/15 hover:bg-white/10 p-px flex items-center justify-center rounded-full hover:scale-105 transition duration-300 active:scale-100">

@@ -19,19 +19,19 @@ const footerColumns: FooterColumnType[] = [
   {
     title: "Pages",
     links: [
-      { label: "All Products", href: "#" },
-      { label: "Studio", href: "#" },
-      { label: "Clients", href: "#" },
-      { label: "Pricing", href: "#" },
-      { label: "Blog", href: "#" },
+      { label: "All Products", href: "/projects" },
+      // { label: "Studio", href: "#" },
+      // { label: "Clients", href: "#" },
+      { label: "Pricing", href: "/#pricing" },
+      { label: "Blog", href: "/#blog" },
     ],
   },
   {
     title: "Socials",
     links: [
-      { label: "Facebook", href: "#" },
-      { label: "Instagram", href: "#" },
-      { label: "Twitter", href: "#" },
+      { label: "Facebook", href: "https://www.facebook.com/algoryme" },
+      { label: "Instagram", href: "https://www.instagram.com/algoryme" },
+      // { label: "Twitter", href: "#" },
       { label: "LinkedIn", href: "#" },
     ],
   },
@@ -40,17 +40,10 @@ const footerColumns: FooterColumnType[] = [
     links: [
       { label: "Privacy Policy", href: "#" },
       { label: "Terms of Service", href: "#" },
-      { label: "Cookie Policy", href: "#" },
+      // { label: "Cookie Policy", href: "#" },
     ],
-  },
-  {
-    title: "Register",
-    links: [
-      { label: "Sign Up", href: "#" },
-      { label: "Login", href: "#" },
-      { label: "Forgot Password", href: "#" },
-    ],
-  },
+  }
+ 
 ];
 
 export default function Footer(): JSX.Element {

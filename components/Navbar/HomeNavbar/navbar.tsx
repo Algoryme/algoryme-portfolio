@@ -75,10 +75,10 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto w-full px-4 py-4 sm:px-6">
           <nav
             className={cn(
-              "w-full flex items-center h-fit justify-between gap-3.5 lg:gap-6",
+              "w-full flex items-center h-fit justify-between gap-3.5 lg:gap-6 rounded-full px-6 py-4 backdrop-blur-md border border-white/10 bg-white/5 dark:bg-slate-950/20 shadow-lg transition-all duration-300",
               sticky
-                ? "bg-transparent border-transparent"
-                : "bg-transparent border-transparent"
+                ? "bg-white/10 dark:bg-slate-950/40 border-white/20"
+                : "bg-white/5 dark:bg-slate-950/20 border-white/10"
             )}
           >
             <Link

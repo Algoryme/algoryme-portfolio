@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
@@ -10,6 +10,8 @@ import {
   IconArrowUpRight,
   IconBolt,
   IconCrown,
+  IconChevronLeft,
+  IconChevronRight,
 } from "@tabler/icons-react";
 
 type PricingTier = {
@@ -37,9 +39,9 @@ const pricingTiers: PricingTier[] = [
     period: "forever",
     icon: <div className="w-6 h-6 text-gray-400">📦</div>,
     features: [
-      { name: "Up to 5 projects", included: true },
-      { name: "Basic analytics", included: true },
-      { name: "Community support", included: true },
+      { name: "Experiment upto 15 days", included: true },
+      { name: "Customizable Components", included: true },
+      { name: "Admin Panel", included: true },
       { name: "1 GB storage", included: true },
       { name: "Advanced features", included: false },
       { name: "Priority support", included: false },
@@ -112,7 +114,7 @@ const PricingCard = ({
       >
         {/* Popular badge */}
         {tier.popular && (
-          <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-gray-600 to-gray-700 px-4 py-2 text-center">
+          <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-gray-600 to-gray-700 px-4 py-1 text-center">
             <p className="text-xs font-semibold uppercase tracking-widest text-white">
               ⭐ Most Popular
             </p>
@@ -120,22 +122,22 @@ const PricingCard = ({
         )}
 
         {/* Content */}
-        <div className="flex flex-col h-full p-8">
+        <div className="flex flex-col h-full p-6">
           {/* Header */}
-          <div className={tier.popular ? "mt-6" : "mb-2"}>
-            <div className="mb-3 inline-flex items-center justify-center rounded-lg bg-gray-800 p-3 text-white">
+          <div className={tier.popular ? "mt-4" : "mb-1"}>
+            <div className="mb-2 inline-flex items-center justify-center rounded-lg bg-gray-800 p-2 text-white">
               {tier.icon}
             </div>
-            <h3 className="mb-2 text-2xl font-bold text-white">{tier.name}</h3>
-            <p className="text-sm text-gray-400">{tier.description}</p>
+            <h3 className="mb-1 text-xl font-bold text-white">{tier.name}</h3>
+            <p className="text-xs text-gray-400">{tier.description}</p>
           </div>
 
           {/* Price */}
-          <div className="my-8">
+          <div className="my-5">
             <div className="flex items-baseline gap-1">
-              <span className="text-5xl font-bold text-white">{tier.price}</span>
+              <span className="text-4xl font-bold text-white">{tier.price}</span>
               {tier.period !== "quote" && (
-                <span className="text-gray-400">
+                <span className="text-sm text-gray-400">
                   {tier.period === "forever" ? "" : `/${tier.period}`}
                 </span>
               )}
@@ -147,7 +149,7 @@ const PricingCard = ({
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className={`w-full py-3 px-4 rounded-lg font-semibold text-white transition-all duration-300 flex items-center justify-center gap-2 mb-8 ${tier.popular
+              className={`w-full py-2 px-4 rounded-lg font-semibold text-sm text-white transition-all duration-300 flex items-center justify-center gap-2 ${tier.popular
                   ? "bg-gradient-to-r from-gray-700 to-gray-600 hover:shadow-lg hover:shadow-gray-700/50"
                   : "bg-gray-800 hover:bg-gray-700 border border-gray-700"
                 }`}
@@ -156,49 +158,6 @@ const PricingCard = ({
               <IconArrowUpRight size={18} />
             </motion.button>
           </Link>
-
-          {/* Features */}
-          <div className="space-y-4">
-            <p className="text-xs uppercase tracking-widest text-gray-500">
-              What's included
-            </p>
-            <div className="space-y-3 flex-grow">
-              {tier.features.map((feature, featureIndex) => (
-                <motion.div
-                  key={featureIndex}
-                  initial={{ opacity: 0, x: -10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{
-                    duration: 0.3,
-                    delay: 0.1 + featureIndex * 0.05,
-                  }}
-                  viewport={{ once: true }}
-                  className="flex items-start gap-3"
-                >
-                  <div
-                    className={`mt-0.5 flex-shrink-0 ${feature.included
-                        ? "text-gray-300"
-                        : "text-gray-600"
-                      }`}
-                  >
-                    {feature.included ? (
-                      <IconCheck size={20} />
-                    ) : (
-                      <IconX size={20} />
-                    )}
-                  </div>
-                  <span
-                    className={`text-sm ${feature.included
-                        ? "text-gray-300"
-                        : "text-gray-600 line-through"
-                      }`}
-                  >
-                    {feature.name}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
-          </div>
 
           {/* Bottom accent line */}
           <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-to-r from-gray-500 to-white transition-all duration-500 group-hover:w-full" />
@@ -209,6 +168,47 @@ const PricingCard = ({
 };
 
 export default function Pricing() {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
+  const checkScroll = () => {
+    if (scrollContainerRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
+      setCanScrollLeft(scrollLeft > 0);
+      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
+    }
+  };
+
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    // Check initial state
+    checkScroll();
+
+    // Add scroll event listener
+    container.addEventListener("scroll", checkScroll);
+
+    // Also check on window resize
+    window.addEventListener("resize", checkScroll);
+
+    return () => {
+      container.removeEventListener("scroll", checkScroll);
+      window.removeEventListener("resize", checkScroll);
+    };
+  }, []);
+
+  const scroll = (direction: "left" | "right") => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = 280; // Adjusted for responsive card sizes
+      scrollContainerRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <section id="pricing" className="relative w-full bg-[#0b0b0c] py-20 text-white">
       {/* Background decoration */}
@@ -240,11 +240,44 @@ export default function Pricing() {
           </p>
         </motion.div>
 
-        {/* Pricing Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-          {pricingTiers.map((tier, index) => (
-            <PricingCard key={tier.id} tier={tier} index={index} />
-          ))}
+        {/* Pricing Cards Grid with Arrows */}
+        <div className="relative mb-12">
+          {/* Left Arrow */}
+          {canScrollLeft && (
+            <button
+              onClick={() => scroll("left")}
+              className="absolute left-0 sm:left-2 top-1/2 -translate-y-1/2 z-10 bg-gray-800 hover:bg-gray-700 rounded-full p-1 sm:p-2 transition-colors duration-300"
+            >
+              <IconChevronLeft size={20} className="sm:w-6 sm:h-6 text-white" />
+            </button>
+          )}
+
+          {/* Scrollable Container */}
+          <div
+            ref={scrollContainerRef}
+            className="flex overflow-x-auto gap-4 sm:gap-6 md:gap-8 px-4 sm:px-8 md:px-16 scrollbar-hide"
+            style={{
+              scrollBehavior: "smooth",
+              msOverflowStyle: "none",
+              scrollbarWidth: "none",
+            }}
+          >
+            {pricingTiers.map((tier, index) => (
+              <div key={tier.id} className="flex-shrink-0 w-64 sm:w-72 md:w-80">
+                <PricingCard tier={tier} index={index} />
+              </div>
+            ))}
+          </div>
+
+          {/* Right Arrow */}
+          {canScrollRight && (
+            <button
+              onClick={() => scroll("right")}
+              className="absolute right-0 sm:right-2 top-1/2 -translate-y-1/2 z-10 bg-gray-800 hover:bg-gray-700 rounded-full p-1 sm:p-2 transition-colors duration-300"
+            >
+              <IconChevronRight size={20} className="sm:w-6 sm:h-6 text-white" />
+            </button>
+          )}
         </div>
 
         {/* FAQ Section */}

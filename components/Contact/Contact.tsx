@@ -14,6 +14,8 @@ import {
   IconBrandGithub,
   IconBrandDiscord,
   IconSend,
+  IconBrandFacebook,
+  IconBrandInstagram,
 } from "@tabler/icons-react";
 
 type ContactInfo = {
@@ -27,43 +29,39 @@ const contactInfo: ContactInfo[] = [
   {
     icon: <IconMail size={24} />,
     label: "Email",
-    value: "hello@example.com",
-    link: "mailto:hello@example.com",
+    value: "algoryme.web@gmail.com",
+    link: "mailto:algoryme.web@gmail.com",
   },
   {
     icon: <IconPhone size={24} />,
     label: "Phone",
-    value: "+1 (555) 123-4567",
-    link: "tel:+15551234567",
+    value: "+880 1410-038880",
+    link: "tel:+8801410038880",
   },
   {
     icon: <IconMapPin size={24} />,
     label: "Location",
-    value: "San Francisco, CA",
+    value: "South Monipur, Mirpur-2, Dhaka, Bangladesh, 1216",
   },
 ];
 
 const socialLinks = [
-  {
-    name: "Twitter",
-    icon: <IconBrandTwitter size={24} />,
-    link: "https://twitter.com",
-  },
+
   {
     name: "LinkedIn",
     icon: <IconBrandLinkedin size={24} />,
     link: "https://linkedin.com",
   },
   {
-    name: "GitHub",
-    icon: <IconBrandGithub size={24} />,
-    link: "https://github.com",
+    name: "Facebook",
+    icon: <IconBrandFacebook size={24} />,
+    link: "https://www.facebook.com/algoryme",
   },
   {
-    name: "Discord",
-    icon: <IconBrandDiscord size={24} />,
-    link: "https://discord.com",
-  },
+    name: "Instagram",
+    icon: <IconBrandInstagram size={24} />,
+    link: "https://www.instagram.com/algoryme",
+  }
 ];
 
 export default function Contact() {
